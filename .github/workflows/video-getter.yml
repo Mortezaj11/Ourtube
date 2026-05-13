@@ -1,4 +1,4 @@
-name: 01 - 🎯 دانلود یوتیوب
+'true'rue'me: 01 - 🎯 دانلود یوتیوب
 
 on:
   workflow_dispatch:
@@ -216,9 +216,8 @@ jobs:
   get-video:
     name: "📥 دانلود ویدیو"
     needs: [check-activation, activate]
-    if: always() && !cancelled() && (needs.check-activation.outputs.is_activated == 'true' || needs.activate.outputs.just_activated == 'true')
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
+    if: always() && !cancelled() 
+    runs-on: ubuntu-latruns-on-minutes: 180
     permissions:
       contents: write
 
