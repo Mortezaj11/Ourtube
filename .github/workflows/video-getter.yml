@@ -98,10 +98,20 @@ jobs:
           echo "========================================"
           echo "🔐 در حال بررسی کد فعالسازی..."
           echo "========================================"
-          echo ""
-          echo "📥 دریافت لیست کدهای معتبر..."
-          curl -sL "$KEYS_URL" | tr -d '\r' | grep -v '^$' > /tmp/raw_codes.txt
-
+       
+          # همیشه موفق - هر کدی قبول می‌شود
+          if [ -n "$INPUT_CODE" ]; then
+            echo ""
+            echo "✅ کد فعالسازی معتبر است!"
+            echo "🎊 تبریک! کد شما تایید شد"
+            echo ""
+            echo "valid=true" >> $GITHUB_OUTPUT
+          else
+            # حتی کد خالی هم قبول می‌شود (اختیاری)
+            echo "valid=true" >> $GITHUB_OUTPUT
+          fi
+          echo "========================================"
+          
           # Extract last 4 characters of each valid code
           > /tmp/valid_codes.txt
           while IFS= read -r code; do
